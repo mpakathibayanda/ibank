@@ -1,5 +1,5 @@
 name: ibank
-description: "Manage your finances with ease and security."
+description: "Send money to anyone, anytime with just a few taps."
 publish_to: 'none'
 version: 0.1.0
 
@@ -10,8 +10,11 @@ dependencies:
   device_preview_screenshot: ^1.0.0
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.4.3
+  animated_splash_screen: ^1.3.0
   flutter_riverpod: ^2.6.1
   http: ^1.2.2
+  fpdart: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +23,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+
+
+flutter_native_splash:
+  image: "assets/splash.png"
+  color: "#2196f3"
+  # dart run flutter_native_splash:create
+  # To restore Flutter's default white splash screen, run the following command in the terminal:
+  # dart run flutter_native_splash:remove

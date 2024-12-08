@@ -1,3 +1,3 @@
 # ibank
 
-Manage your finances with ease and security.
+Send money to anyone, anytime with just a few taps.
