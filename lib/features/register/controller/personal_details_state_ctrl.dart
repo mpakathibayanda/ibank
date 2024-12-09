@@ -21,6 +21,19 @@ class PersonalDetailsStateCtrl extends StateNotifier<PersonalDetailsState> {
         );
 
   bool next() => state.formKey.currentState!.validate();
+  Map<String, dynamic> get details => {
+        'firstName': state.firstNameCtrl.text,
+        'lastName': state.lastNameCtrl.text,
+        'idNumber': state.idNumberCtrl.text,
+      };
+
+  void clear() {
+    state.firstNameCtrl.clear();
+    state.lastNameCtrl.clear();
+    state.idNumberCtrl.clear();
+    state.formKey.currentState?.reset();
+  }
+
   @override
   void dispose() {
     state.firstNameCtrl.dispose();

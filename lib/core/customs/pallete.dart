@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Pallete {
   static const primary = Color(0xFF2196F3);
+  static const weakBlue = Color.fromARGB(255, 134, 201, 255);
   static const strongBlue = Color.fromARGB(255, 24, 1, 153);
   static const purple = Color(0xFFDA3DE8);
   static const white = Colors.white;

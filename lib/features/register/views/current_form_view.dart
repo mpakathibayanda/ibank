@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:ibank/core/widgets/large_text.dart';
+import 'package:ibank/core/widgets/logo_title.dart';
 
 class CurrentFormView extends StatelessWidget {
   final String formTitle;
@@ -21,7 +21,7 @@ class CurrentFormView extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.center,
-            child: LargeText(text: formTitle),
+            child: LogoTitle(text: formTitle),
           ),
           const SizedBox(height: 60),
           ...formFields,

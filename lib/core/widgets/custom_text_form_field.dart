@@ -9,6 +9,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPassword;
   final TextInputType? keyboardType;
   final Color fillColor;
+  final String? prefixText;
   const CustomTextFormField({
     super.key,
     required this.hint,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatefulWidget {
     this.isPassword = false,
     this.keyboardType,
     this.fillColor = Pallete.white,
+    this.prefixText,
   });
 
   @override
@@ -71,6 +73,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 ),
               )
             : null,
+        prefixText: widget.prefixText,
       ),
       validator: widget.validator,
     );

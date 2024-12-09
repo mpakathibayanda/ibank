@@ -19,11 +19,19 @@ class AddressFormView extends ConsumerWidget {
         const ProvincesDropdown(),
         const SizedBox(height: 10),
         CustomTextFormField(
+          controller: state.suburbCtrl,
+          //enabled: !state.isLoggin,
+          hint: 'SUBURB',
+          keyboardType: TextInputType.name,
+          validator: requiredValidation,
+        ),
+        const SizedBox(height: 10),
+        CustomTextFormField(
           controller: state.cityCtrl,
           //enabled: !state.isLoggin,
           hint: 'CITY',
           keyboardType: TextInputType.name,
-          validator: nameValidation,
+          validator: requiredValidation,
         ),
         const SizedBox(height: 10),
         CustomTextFormField(
@@ -31,7 +39,7 @@ class AddressFormView extends ConsumerWidget {
           //enabled: !state.isLoggin,
           hint: 'STREET NAME',
           keyboardType: TextInputType.name,
-          validator: nameValidation,
+          validator: requiredValidation,
         ),
         const SizedBox(height: 10),
         CustomTextFormField(
@@ -39,7 +47,7 @@ class AddressFormView extends ConsumerWidget {
           //enabled: !state.isLoggin,
           hint: 'STREET NUMBER',
           keyboardType: TextInputType.name,
-          validator: nameValidation,
+          validator: requiredValidation,
         ),
       ],
     );

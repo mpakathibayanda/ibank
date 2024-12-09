@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:ibank/core/models/account_model.dart';
 import 'package:ibank/data/account/repository/account_repo.dart';
-import 'package:ibank/data/account/sources/source_providers.dart';
+import 'package:ibank/data/account/sources/account_source_providers.dart';
 
 import '../../../core/usecases/usecases.dart';
 

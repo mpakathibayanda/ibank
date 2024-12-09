@@ -15,6 +15,7 @@ class AddressDetailsStateCtrl extends StateNotifier<AddressDetailsState> {
           AddressDetailsState(
             formKey: GlobalKey<FormState>(),
             provinceCtrl: TextEditingController(),
+            suburbCtrl: TextEditingController(),
             cityCtrl: TextEditingController(),
             streetNumberCtrl: TextEditingController(),
             streetNameCtrl: TextEditingController(),
@@ -31,9 +32,27 @@ class AddressDetailsStateCtrl extends StateNotifier<AddressDetailsState> {
     );
   }
 
+  Map<String, dynamic> get details => {
+        'province': state.provinceCtrl.text,
+        'suburb': state.suburbCtrl.text,
+        'city': state.cityCtrl.text,
+        'streetName': state.streetNameCtrl.text,
+        'streetNumber': state.streetNumberCtrl.text,
+      };
+
+  void clear() {
+    state.provinceCtrl.clear();
+    state.suburbCtrl.clear();
+    state.cityCtrl.clear();
+    state.streetNameCtrl.clear();
+    state.streetNumberCtrl.clear();
+    state.formKey.currentState?.reset();
+  }
+
   @override
   void dispose() {
     state.provinceCtrl.dispose();
+    state.suburbCtrl.dispose();
     state.cityCtrl.dispose();
     state.streetNameCtrl.dispose();
     state.streetNumberCtrl.dispose();
@@ -45,6 +64,7 @@ class AddressDetailsStateCtrl extends StateNotifier<AddressDetailsState> {
 class AddressDetailsState {
   final GlobalKey<FormState> formKey;
   final TextEditingController provinceCtrl;
+  final TextEditingController suburbCtrl;
   final TextEditingController cityCtrl;
   final TextEditingController streetNumberCtrl;
   final TextEditingController streetNameCtrl;
@@ -52,6 +72,7 @@ class AddressDetailsState {
   AddressDetailsState(
       {required this.formKey,
       required this.provinceCtrl,
+      required this.suburbCtrl,
       required this.cityCtrl,
       required this.streetNumberCtrl,
       required this.streetNameCtrl});
@@ -59,6 +80,7 @@ class AddressDetailsState {
   AddressDetailsState copyWith({
     GlobalKey<FormState>? formKey,
     TextEditingController? provinceCtrl,
+    TextEditingController? suburbCtrl,
     TextEditingController? cityCtrl,
     TextEditingController? streetNumberCtrl,
     TextEditingController? streetNameCtrl,
@@ -66,6 +88,7 @@ class AddressDetailsState {
     return AddressDetailsState(
       formKey: formKey ?? this.formKey,
       provinceCtrl: provinceCtrl ?? this.provinceCtrl,
+      suburbCtrl: suburbCtrl ?? this.suburbCtrl,
       cityCtrl: cityCtrl ?? this.cityCtrl,
       streetNumberCtrl: streetNumberCtrl ?? this.streetNumberCtrl,
       streetNameCtrl: streetNameCtrl ?? this.streetNameCtrl,

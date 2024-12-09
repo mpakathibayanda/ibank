@@ -17,10 +17,26 @@ class WelcomePage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Expanded(child: WelcomeView()),
+                Align(
+                  alignment: Alignment.center,
+                  child: Card(
+                    elevation: 50,
+                    color: Colors.transparent,
+                    clipBehavior: Clip.hardEdge,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Image.asset(
+                      'assets/logo.png',
+                      height: 200,
+                      width: 200,
+                    ),
+                  ),
+                ),
+                const WelcomeView(),
+                const SizedBox(height: 40),
                 Wrap(
                   spacing: 25,
                   runSpacing: 15,

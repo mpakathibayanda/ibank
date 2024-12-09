@@ -11,7 +11,7 @@ class AppSplash extends StatelessWidget {
   Widget build(BuildContext context) {
     return content != null
         ? Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 content!.heading,

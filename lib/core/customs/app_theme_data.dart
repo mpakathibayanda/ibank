@@ -7,7 +7,10 @@ final appThemeData = ThemeData.light().copyWith(
     backgroundColor: Pallete.primary,
     scrolledUnderElevation: 0,
     elevation: 0,
+    iconTheme: IconThemeData(color: Pallete.white),
+    actionsIconTheme: IconThemeData(color: Pallete.white),
   ),
+  iconTheme: const IconThemeData(color: Pallete.white),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(
       side: const BorderSide(
@@ -19,6 +22,17 @@ final appThemeData = ThemeData.light().copyWith(
       textStyle: const TextStyle(color: Pallete.white),
       minimumSize: const Size(100, 50),
       maximumSize: const Size(double.infinity, 50),
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Pallete.strongBlue,
+      textStyle: const TextStyle(color: Pallete.white),
+      minimumSize: const Size(100, 50),
+      maximumSize: const Size(double.infinity, 50),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
     ),
   ),
 );

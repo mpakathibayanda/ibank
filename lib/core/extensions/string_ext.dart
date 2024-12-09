@@ -10,8 +10,8 @@ extension StringExt on String {
       r'^\+?[1-9]\d{1,14}$',
     );
 
-    final local = RegExp(r'^0[6-8]\d{8}$');
-    return international.hasMatch(this) || local.hasMatch(this);
+    //final local = RegExp(r'^0[6-8]\d{8}$');
+    return international.hasMatch(this);
   }
 
   bool get isIDNumber {

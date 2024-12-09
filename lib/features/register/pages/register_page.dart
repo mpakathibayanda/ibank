@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ibank/core/customs/pallete.dart';
+import 'package:ibank/core/extensions/build_context_ext.dart';
 import 'package:ibank/core/widgets/custom_elevated_button.dart';
 import 'package:ibank/core/widgets/custom_outlined_button.dart';
 import 'package:ibank/features/login/page/login_page.dart';
@@ -23,7 +25,7 @@ class RegisterPage extends ConsumerWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                switch (state) {
+                switch (state.currentFormIndex) {
                   0 => const PersonalFormView(),
                   1 => const AddressFormView(),
                   2 => const ContactFormView(),
@@ -35,18 +37,49 @@ class RegisterPage extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Visibility(
-                      visible: state > 0,
+                      visible: state.currentFormIndex > 0,
                       child: CustomOutlinedButton(
                         label: 'Prevous',
-                        onPressed: () => notifier.prevous(),
+                        onPressed: !state.isRegisting
+                            ? () => notifier.prevous()
+                            : null,
                         size: const Size(150, 50),
                       ),
                     ),
                     const SizedBox(width: 10),
                     CustomElevatedButton(
-                      label: state != 3 ? 'Next' : 'Register',
-                      onPressed: () => notifier.next(),
-                      size: const Size(150, 50),
+                      label: state.currentFormIndex != 3
+                          ? 'Next'
+                          : !state.isRegisting
+                              ? 'Register'
+                              : 'Registering...',
+                      onPressed: !state.isRegisting
+                          ? () async {
+                              final res = await notifier.next();
+                              if (res && state.error.isEmpty) {
+                                context.snackBar(
+                                  msg: 'Succefully registered!,You can Login',
+                                );
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const LoginPage();
+                                    },
+                                  ),
+                                  (Route<dynamic> route) => false,
+                                );
+                              } else if (state.error.isNotEmpty) {
+                                context.snackBar(
+                                  msg: state.error,
+                                  color: Pallete.red,
+                                  textColor: Pallete.white,
+                                );
+                                notifier.setError('');
+                              }
+                            }
+                          : null,
+                      size: const Size(160, 50),
                     ),
                   ],
                 ),
@@ -55,19 +88,21 @@ class RegisterPage extends ConsumerWidget {
                   children: [
                     const Text('Alreagy have an account? '),
                     InkWell(
-                      onTap: () {
-                        try {
-                          Navigator.pop(context);
-                        } on Exception catch (_) {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return const LoginPage();
-                              },
-                            ),
-                          );
-                        }
-                      },
+                      onTap: !state.isRegisting
+                          ? () {
+                              try {
+                                Navigator.pop(context);
+                              } on Exception catch (_) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return const LoginPage();
+                                    },
+                                  ),
+                                );
+                              }
+                            }
+                          : null,
                       child: const Text(
                         'Login',
                         style: TextStyle(

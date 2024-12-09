@@ -19,15 +19,19 @@ class PasswordDetailsStateCtrl extends StateNotifier<PasswordDetailsState> {
           ),
         );
 
-  bool next() {
-    state.formKey.currentState?.save();
-    print(state.formKey.currentState);
-    return state.formKey.currentState?.validate() ?? false;
+  bool next() => state.formKey.currentState!.validate();
+
+  Map<String, dynamic> get details =>
+      {'password': state.createPasswordCtrl.text};
+
+  void clear() {
+    state.createPasswordCtrl.clear();
+    state.confirmPasswordCtrl.clear();
+    state.formKey.currentState?.reset();
   }
 
   @override
   void dispose() {
-    print('Here');
     state.createPasswordCtrl.dispose();
     state.confirmPasswordCtrl.dispose();
     state.formKey.currentState?.reset();

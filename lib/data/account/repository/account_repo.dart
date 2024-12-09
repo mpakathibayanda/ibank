@@ -4,5 +4,6 @@ import '../../../core/models/account_model.dart';
 
 abstract interface class AccountRepo {
   FutureEitherVoid register({required AccountModel account});
-  FutureEitherVoid login({required String username, required String password});
+  FutureEither<AccountModel> login(
+      {required String username, required String password});
 }

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ibank/core/customs/pallete.dart';
+import 'package:ibank/core/extensions/build_context_ext.dart';
 import 'package:ibank/core/helpers/validators.dart';
 import 'package:ibank/core/widgets/custom_elevated_button.dart';
 import 'package:ibank/core/widgets/custom_text_form_field.dart';
-import 'package:ibank/core/widgets/large_text.dart';
-import 'package:ibank/features/login/controller/login_ctrl.dart';
+import 'package:ibank/core/widgets/logo_title.dart';
+import 'package:ibank/features/home/pages/home_page.dart';
+import 'package:ibank/features/login/controller/account_ctrl.dart';
 import 'package:ibank/features/register/pages/register_page.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -12,8 +15,8 @@ class LoginPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(loginStateCtrlProvider);
-    final notifier = ref.read(loginStateCtrlProvider.notifier);
+    final state = ref.watch(accountStateCtrlProvider);
+    final notifier = ref.read(accountStateCtrlProvider.notifier);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -27,7 +30,7 @@ class LoginPage extends ConsumerWidget {
                 children: [
                   const Align(
                     alignment: Alignment.center,
-                    child: LargeText(text: 'iBANK LOGIN'),
+                    child: LogoTitle(text: 'iBANK LOGIN'),
                   ),
                   const SizedBox(height: 15),
                   Text(
@@ -61,7 +64,23 @@ class LoginPage extends ConsumerWidget {
                     onPressed: !state.isLoggin
                         ? () async {
                             final isLoggedIn = await notifier.login();
-                            if (isLoggedIn) {}
+                            if (isLoggedIn) {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const HomePage();
+                                  },
+                                ),
+                                (Route<dynamic> route) => false,
+                              );
+                            } else {
+                              context.snackBar(
+                                msg: state.error,
+                                color: Pallete.red,
+                                textColor: Pallete.white,
+                              );
+                            }
                           }
                         : null,
                   ),
@@ -105,7 +124,7 @@ class LoginErrorView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final error = ref.watch(loginStateCtrlProvider).error;
+    final error = ref.watch(accountStateCtrlProvider).error;
     return Visibility(
       visible: error.isNotEmpty,
       child: Column(

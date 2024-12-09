@@ -21,6 +21,16 @@ class ContactDetailsStateCtrl extends StateNotifier<ContactDetailsState> {
 
   bool next() => state.formKey.currentState!.validate();
 
+  Map<String, dynamic> get details => {
+        'email': state.emailAddressCtrl.text,
+        'cellNumber': state.cellphoneNumberCtrl.text,
+      };
+  void clear() {
+    state.emailAddressCtrl.clear();
+    state.cellphoneNumberCtrl.clear();
+    state.formKey.currentState?.reset();
+  }
+
   @override
   void dispose() {
     state.emailAddressCtrl.dispose();

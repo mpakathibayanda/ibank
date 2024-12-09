@@ -68,7 +68,6 @@ class AccountModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'accountNumber': accountNumber,
       'firstName': firstName,
       'lastName': lastName,
       'cellNumber': cellNumber,
@@ -80,8 +79,6 @@ class AccountModel {
       'streetName': streetName,
       'idNumber': idNumber,
       'password': password,
-      'dateOfBirth': dateOfBirth,
-      'balance': balance,
     };
   }
 
@@ -100,7 +97,7 @@ class AccountModel {
       idNumber: map['idNumber'] as String,
       password: map['password'] as String,
       dateOfBirth: map['dateOfBirth'] as String?,
-      balance: map['balance'].toDouble() as double,
+      balance: map['balance'] as double,
     );
   }
 

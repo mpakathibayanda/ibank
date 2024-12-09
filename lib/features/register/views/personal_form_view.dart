@@ -20,7 +20,7 @@ class PersonalFormView extends ConsumerWidget {
           //enabled: !state.isLoggin,
           hint: 'FISRT NAME',
           keyboardType: TextInputType.name,
-          validator: nameValidation,
+          validator: firstNameValidation,
         ),
         const SizedBox(height: 10),
         CustomTextFormField(
@@ -28,7 +28,7 @@ class PersonalFormView extends ConsumerWidget {
           //enabled: !state.isLoggin,
           hint: 'LAST NAME',
           keyboardType: TextInputType.name,
-          validator: nameValidation,
+          validator: lastNameValidation,
         ),
         const SizedBox(height: 10),
         CustomTextFormField(
